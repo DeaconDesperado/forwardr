@@ -1,4 +1,4 @@
-# Forwardr # 
+# Forwardr  
 
 Forwardr is a simple HTTP endpoint catchall that can be used in conjuction with RESTful web services.
 
@@ -24,14 +24,14 @@ You can pass a static path to exec() to force all requests to the same uri at th
 The constructor to Forwardr can also optionally also take an associative array of params to be embedded into every request, which
 works great for hmacs, tokens or other auth credentials.
 
-   $params = array('app_secret'=>'somehash')
-   $f = new Forwardr('data.test.com',$params)
-   $f->exec();
+    $params = array('app_secret'=>'somehash')
+    $f = new Forwardr('data.test.com',$params)
+    $f->exec();
 
 You can use these methods along with URL rewriting to make a 'middleman' for your web service.
 
 There are three public properties that can change response behavior
 
-*$debug - If true, will prevent the request from failing and always return a response body
-*$set_headers - If true, response status codes from the remote endpt will be embedded into the local response
-*$mimetype - Used in conjunction with set_headers, this can set the mimetype for the local response
+* $debug - If true, will prevent the request from failing and always return a response body
+* $set_headers - If true, response status codes from the remote endpt will be embedded into the local response
+* $mimetype - Used in conjunction with set_headers, this can set the mimetype for the local response
