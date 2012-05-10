@@ -14,7 +14,8 @@ To set up an endpt for forwarding, simply instantiate with the base destination 
     $f->exec();
 
 Calling the exec method like this will simply use the the url path after your listening endpt to determine the remote path.
-IE client.test.com/index.php/data/goes/here will be remotely forwarded to data.test.com/data/goes/here.
+IE client.test.com/index.php/data/goes/here will be remotely forwarded to data.test.com/data/goes/here.  Any parameters from the $_GET
+or $_POST superglobals will be handed off to the remote request transparently, allowing parameters specified in AJAX to forward appropriately.
 
 You can pass a static path to exec() to force all requests to the same uri at the remote domain.
 
