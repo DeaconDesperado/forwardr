@@ -31,8 +31,9 @@ works great for hmacs, tokens or other auth credentials.
 
 You can use these methods along with URL rewriting to make a 'middleman' for your web service.
 
-There are three public properties that can change response behavior
+There are four public properties that can change response behavior
 
 * $debug - If true, will prevent the request from failing and always return a response body
 * $set_headers - If true, response status codes from the remote endpt will be embedded into the local response
 * $mimetype - Used in conjunction with set_headers, this can set the mimetype for the local response
+* $user_agent - Set to use a custom User-Agent in the remote request headers

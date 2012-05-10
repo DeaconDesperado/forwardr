@@ -34,6 +34,12 @@ class Forwardr{
 
     public $mimetype = 'text/plain';
 
+    /**
+      * Set to use a custom User-agent - defaults to Forwardr
+      */
+
+    public $user_agent = 'Forwardr-0.9';
+
     private $http_codes = array(
             100 => 'Continue',
             101 => 'Switching Protocols',
@@ -137,6 +143,7 @@ class Forwardr{
         }else{
             curl_setopt($ch,CURLOPT_FAILONERROR,True);
         }
+        curl_setopt($ch,CURLOPT_USERAGENT,$this->user_agent);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,True);
         return $ch;
     }
