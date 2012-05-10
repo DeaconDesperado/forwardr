@@ -1,16 +1,34 @@
 <?php
+
+/**
+  * Catch-all adaptive HTTP forwarder for circumventing cross-domain issues
+  * 
+  * Forwardr can be set up as an endpt listener to forward any requests to another
+  * endpt, included all passed parameters from the $_GET or $_POST super globals.
+  *
+  * @package Forwardr
+  * @author Mark Grey <mark@deacondesperado.com>
+  * @license http://www.opensource.org/licenses/bsd-license.php
+  */
+
 require_once('oocurl.php');
 
 class Forwardr{
 
-    /**
-      * Class that hooks into superglobal array to forward reqs
-      */
-
     private $_base = '';
     private $_mimetype;
     private $_permanent_params = array();
+    
+    /**
+      * Set debugging mode as a public property
+      */
+
     public $debug = False;
+
+    /**
+      * If true, will return remote response status code to answered response
+      */
+
     public $set_headers = False;
 
     private $http_codes = array(
@@ -70,6 +88,15 @@ class Forwardr{
             509 => 'Bandwidth Limit Exceeded',
             510 => 'Not Extended'
             );
+
+
+    /**
+      * Construct a Forwardr and prepare to listen
+      *
+      * @param string $base The base domain to send all requests to
+      * @param string $mimetype The mimetype to force on the response if set_headers is true
+      * @param array $params The permanent params to use for every request (great for hmacs or auth creds)
+      */
 
     public function __construct($base,$mimetype='text/plain',$params=array()){
         $this->_base = trim($base,'/');
@@ -149,6 +176,9 @@ class Forwardr{
             }
             return $response;
         }else{
+            if($this->set_headers){
+                header('Content-type: '.$this->_mimetype);
+            }
             return $response;
         }
     }
