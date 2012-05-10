@@ -18,8 +18,8 @@ IE client.test.com/index.php/data/goes/here will be remotely forwarded to data.t
 
 You can pass a static path to exec() to force all requests to the same uri at the remote domain.
 
-   $f = new Forwardr('data.test.com');
-   $f->exec('/have/a/nice/day'); 
+    $f = new Forwardr('data.test.com');
+    $f->exec('/have/a/nice/day'); 
 
 The constructor to Forwardr can also optionally also take an associative array of params to be embedded into every request, which
 works great for hmacs, tokens or other auth credentials.
