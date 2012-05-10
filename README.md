@@ -24,8 +24,8 @@ You can pass a static path to exec() to force all requests to the same uri at th
 The constructor to Forwardr can also optionally also take an associative array of params to be embedded into every request, which
 works great for hmacs, tokens or other auth credentials.
 
-    $params = array('app_secret'=>'somehash')
-    $f = new Forwardr('data.test.com',$params)
+    $params = array('app_secret'=>'somehash');
+    $f = new Forwardr('data.test.com',$params);
     $f->exec();
 
 You can use these methods along with URL rewriting to make a 'middleman' for your web service.
