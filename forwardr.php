@@ -16,7 +16,6 @@ require_once('oocurl.php');
 class Forwardr{
 
     private $_base = '';
-    private $_mimetype;
     private $_permanent_params = array();
     
     /**
@@ -30,6 +29,12 @@ class Forwardr{
       */
 
     public $set_headers = False;
+
+    /**
+      * If set headers is True, this will determine output mimetype
+      */
+
+    public $mimetype = 'text/plain';
 
     private $http_codes = array(
             100 => 'Continue',
@@ -94,14 +99,12 @@ class Forwardr{
       * Construct a Forwardr and prepare to listen
       *
       * @param string $base The base domain to send all requests to
-      * @param string $mimetype The mimetype to force on the response if set_headers is true
       * @param array $params The permanent params to use for every request (great for hmacs or auth creds)
       */
 
-    public function __construct($base,$mimetype='text/plain',$params=array()){
+    public function __construct($base,$params=array()){
         $this->_base = trim($base,'/');
         $this->_permanent_params = array();
-        $this->_mimetype = $mimetype;
     }
 
     public function exec($path = False){
@@ -177,7 +180,7 @@ class Forwardr{
             return $response;
         }else{
             if($this->set_headers){
-                header('Content-type: '.$this->_mimetype);
+                header('Content-type: '.$this->mimetype);
             }
             return $response;
         }
