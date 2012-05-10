@@ -11,8 +11,6 @@
   * @license http://www.opensource.org/licenses/bsd-license.php
   */
 
-require_once('oocurl.php');
-
 class Forwardr{
 
     private $_base = '';
