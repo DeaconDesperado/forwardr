@@ -175,7 +175,7 @@ class Forwardr{
             if($this->set_headers){
                 $status_code = curl_getinfo($ch,CURLINFO_HTTP_CODE);
                 $header_str = sprintf('%d %s', $status_code, $this->http_codes[$status_code] );
-                header('HTTP/1.0 '.$header_str);
+                header($_SERVER['SERVER_PROTOCOL'].' '.$header_str);
             }
             return $response;
         }else{
