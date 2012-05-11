@@ -108,13 +108,14 @@ class Forwardr{
 
     public function __construct($base,$params=array()){
         $this->_base = trim($base,'/');
-        $this->_permanent_params = array();
+        $this->_permanent_params = $params;
     }
 
     public function exec($path = False){
         $method = $_SERVER['REQUEST_METHOD'];
         if(!$path){
             $path = isset($_SERVER['PATH_INFO']) ? trim(substr($_SERVER['PATH_INFO'],1),'/') : '/';
+            print_r($path);
         }
         
         try{
